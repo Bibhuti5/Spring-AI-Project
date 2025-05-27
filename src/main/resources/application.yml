@@ -1,0 +1,12 @@
+spring:
+  application.name: Spring-AI-Project
+
+  ai:
+    openai:
+      api-key: YOUR_OPENAI_API_KEY
+      chat:
+        model: gpt-3.5-turbo
+
+server:
+  port: 8080
+
