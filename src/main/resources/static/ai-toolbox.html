@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring AI Toolbox</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        textarea, input { width: 100%; margin: 10px 0; padding: 10px; }
+        button { padding: 10px 20px; margin-bottom: 20px; }
+        .output { border: 1px solid #ccc; padding: 10px; white-space: pre-wrap; }
+        img { max-width: 100%; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<h1>🧠 Spring AI Toolbox</h1>
+
+<!-- 🔹 Image Generation -->
+<h3>Generate Image</h3>
+<input id="imagePrompt" placeholder="Enter image description">
+<button onclick="generateImage()">Generate</button>
+<div class="output" id="imageOutput"></div>
+
+<!-- 🔹 Image Description -->
+<h3>Describe Image</h3>
+<input id="imageUrl" placeholder="Enter image URL">
+<button onclick="describeImage()">Describe</button>
+<div class="output" id="describeOutput"></div>
+
+<!-- 🔹 Video Summary -->
+<h3>Summarize YouTube Video</h3>
+<input id="videoUrl" placeholder="Enter YouTube URL">
+<button onclick="summarizeVideo()">Summarize</button>
+<div class="output" id="videoOutput"></div>
+
+<!-- 🔹 Code Review -->
+<h3>Review Code</h3>
+<textarea id="codeInput" rows="5" placeholder="Paste Java code here"></textarea>
+<button onclick="reviewCode()">Review</button>
+<div class="output" id="codeOutput"></div>
+
+<!-- 🔹 Interview QA -->
+<h3>Interview Q&A</h3>
+<input id="qaTopic" placeholder="Enter topic (e.g., Spring Boot)">
+<button onclick="interviewQA()">Generate Q&A</button>
+<div class="output" id="qaOutput"></div>
+
+<script>
+    async function postData(url, data, outputId) {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const json = await res.json();
+      document.getElementById(outputId).innerHTML =
+        json.imageUrl ? `<img src="${json.imageUrl}" />` : JSON.stringify(json, null, 2);
+    }
+
+    function generateImage() {
+      const prompt = document.getElementById("imagePrompt").value;
+      postData("/image/generate", { prompt }, "imageOutput");
+    }
+
+    function describeImage() {
+      const url = document.getElementById("imageUrl").value;
+      postData("/image/describe", { imageUrl: url }, "describeOutput");
+    }
+
+    function summarizeVideo() {
+      const url = document.getElementById("videoUrl").value;
+      postData("/video/summarize", { videoUrl: url }, "videoOutput");
+    }
+
+    function reviewCode() {
+      const code = document.getElementById("codeInput").value;
+      postData("/chat/code-review", { code }, "codeOutput");
+    }
+
+    function interviewQA() {
+      const topic = document.getElementById("qaTopic").value;
+      postData("/chat/interview-qa", { topic }, "qaOutput");
+    }
+</script>
+
+</body>
+</html>

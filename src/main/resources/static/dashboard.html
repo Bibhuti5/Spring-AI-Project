@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring AI Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+          font-family: Arial;
+          margin: 20px;
+        }
+        canvas {
+          max-width: 700px;
+        }
+    </style>
+</head>
+<body>
+<h2>Spring AI Usage Dashboard</h2>
+
+<canvas id="usageChart"></canvas>
+
+<script>
+    const ctx = document.getElementById('usageChart').getContext('2d');
+    const usageChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Chats', 'Image Gen', 'Image Describe', 'Video Summary', 'Code Reviews', 'Interview QA'],
+        datasets: [{
+          label: 'Requests Count',
+          data: [15, 10, 5, 2, 8, 6], // You can fetch this from an API dynamically later
+          backgroundColor: [
+            '#36A2EB', '#FF6384', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+</script>
+</body>
+</html>

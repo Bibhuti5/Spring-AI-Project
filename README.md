@@ -25,7 +25,7 @@ This is a simple Spring Boot application that integrates with **OpenAI** using *
     - Summarize videos (e.g., YouTube)
     - Review Java code
     - Generate interview Q&A
-
+- 🌐 Static HTML UI to interact with endpoints
 ---
 
 ## 🔧 Prerequisites
@@ -33,8 +33,7 @@ This is a simple Spring Boot application that integrates with **OpenAI** using *
 - Java 17+
 - Maven 3.6+
 - OpenAI API Key (create one at [platform.openai.com](https://platform.openai.com))
-
----
+_---_
 
 ## 🛠️ Setup Instructions
 
