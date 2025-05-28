@@ -8,6 +8,12 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.Map;
 
+/*
+ * Author: Bibhuti Bhusan Sahoo
+ * GitHub: https://github.com/Bibhuti5
+ * Tools Used: Gen AI, Spring Boot, OpenAI
+ */
+
 @RestController
 @RequestMapping("/chat")
 public class ChatController {
